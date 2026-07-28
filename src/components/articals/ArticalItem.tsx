@@ -29,6 +29,7 @@ const ArticalItem = ({ arttical }: ArticalItemProps) => {
       text-gray-900
       mb-4
       group-hover:text-purple-700
+      line-clamp-1
       transition
     "
       >

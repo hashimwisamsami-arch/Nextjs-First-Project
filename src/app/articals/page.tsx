@@ -4,6 +4,9 @@ import { Articale } from "@/utils/types";
 
 const Artical = async () => {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+  if (!response.ok) {
+    throw new Error("Failed to fetch articles");
+  }
   const articles: Articale[] = await response.json();
   return (
     <section className="container m-auto px-5">
