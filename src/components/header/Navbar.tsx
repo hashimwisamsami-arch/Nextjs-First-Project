@@ -47,9 +47,9 @@ const Navbar = () => {
           <Link
             onClick={() => setToggle(false)}
             className={styles.navLink}
-            href="/articals"
+            href="/articles"
           >
-            Articals{" "}
+            Articles{" "}
           </Link>
           <Link
             onClick={() => setToggle(false)}
