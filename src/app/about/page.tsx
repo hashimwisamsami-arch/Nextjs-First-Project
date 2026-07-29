@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 const About = () => {
   return (
     <section className="fix_height container m-auto">
@@ -11,3 +13,8 @@ const About = () => {
 };
 
 export default About;
+
+export const metadata: Metadata = {
+  title: "About Page",
+  description: "This is About Page",
+};
