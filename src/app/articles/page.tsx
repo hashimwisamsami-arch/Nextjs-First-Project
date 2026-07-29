@@ -1,4 +1,6 @@
 import ArticalItem from "@/components/articals/ArticalItem";
+import Pagination from "@/components/articals/Pagination";
+import SearchArticlesInput from "@/components/articals/SearchArticlesInput";
 
 import { Articale } from "@/utils/types";
 import { Metadata } from "next";
@@ -11,11 +13,13 @@ const Artical = async () => {
   const articles: Articale[] = await response.json();
   return (
     <section className="container m-auto px-5">
+      <SearchArticlesInput />
       <div className="flex items-center flex-wrap justify-center gap-7">
-        {articles.map((item) => (
+        {articles.slice(0, 6).map((item) => (
           <ArticalItem arttical={item} key={item.id} />
         ))}
       </div>
+      <Pagination />
     </section>
   );
 };

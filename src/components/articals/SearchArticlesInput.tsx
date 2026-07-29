@@ -1,0 +1,31 @@
+"use client";
+
+import { useState } from "react";
+
+const SearchArticlesInput = () => {
+  const [searchText, setSearchText] = useState("");
+
+  const formSearchHandler = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    console.log({ searchText });
+  };
+  return (
+    <>
+      <form
+        onSubmit={formSearchHandler}
+        className="my-5 w-full md:w-2/3 m-auto"
+      >
+        <input
+          className="w-full p-3 rounded text-xl border border-black text-gray-900"
+          type="search"
+          placeholder="Search for article"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+      </form>
+    </>
+  );
+};
+
+export default SearchArticlesInput;
