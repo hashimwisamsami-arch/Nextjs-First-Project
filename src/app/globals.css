@@ -11,3 +11,7 @@ body {
 .fix_height {
   min-height: calc(100vh - 150px);
 }
+
+.overflow_height {
+  height: calc(100vh - 150px);
+}
