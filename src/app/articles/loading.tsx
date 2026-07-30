@@ -5,10 +5,9 @@ const ArticleLoader = () => {
       <div className="my-5 w-full md:w-2/3 m-auto bg-gray-300 h-12 rounded"></div>
       <div className="flex items-center flex-wrap justify-center gap-7">
         {articlesSkeleton.map((item) => (
-          <>
-            <div
-              key={item}
-              className="
+          <div
+            key={item}
+            className="
     group
     w-full sm:w-[45%] lg:w-[23%]
     p-6
@@ -19,9 +18,9 @@ const ArticleLoader = () => {
     transition-all
     duration-300
   "
-            >
-              <h3
-                className="
+          >
+            <h3
+              className="
 bg-gray-200
       h-6
       mb-4
@@ -29,10 +28,10 @@ bg-gray-200
       
       transition
     "
-              ></h3>
+            ></h3>
 
-              <p
-                className="
+            <p
+              className="
       
       text-base
       leading-7
@@ -40,11 +39,10 @@ bg-gray-200
       bg-gray-300
       h-10
     "
-              ></p>
+            ></p>
 
-              <div className="bg-gray-400 h-8"></div>
-            </div>
-          </>
+            <div className="bg-gray-400 h-8"></div>
+          </div>
         ))}
       </div>
       <div className="flex items-center justify-center mt-2 mb-10">
