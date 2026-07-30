@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+
 const RegisterForm = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -13,6 +16,7 @@ const RegisterForm = () => {
     if (username === "") return toast.error("Username is required");
     if (password === "") return toast.error("Password is required");
     console.log({ username, email, password });
+    router.replace("/login");
   };
   return (
     <>
