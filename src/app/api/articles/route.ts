@@ -1,5 +1,3 @@
-import { error } from "./../../../../node_modules/@prisma/streams-local/node_modules/ajv/lib/vocabularies/applicator/dependencies";
-
 import { CreateArticleDto } from "@/utils/dtos";
 
 import { craeteArticleSchema } from "@/utils/validationSchemas";
