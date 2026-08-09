@@ -3,6 +3,8 @@ import { registerSchema } from "@/utils/validationSchemas";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/utils/db";
 import bcrypt from "bcryptjs";
+import { generateJWT } from "@/utils/generateToken";
+import { JWTPayload } from "@/utils/types";
 
 /** 
  method: POST
@@ -42,7 +44,12 @@ export async function POST(request: NextRequest) {
         isAdmin: true,
       },
     });
-    const token = null;
+    const JWTPayload: JWTPayload = {
+      id: newUser.id,
+      isAdmin: newUser.isAdmin,
+      username: newUser.username,
+    };
+    const token = generateJWT(JWTPayload);
     return NextResponse.json({ ...newUser, token }, { status: 201 });
   } catch {
     return NextResponse.json(
