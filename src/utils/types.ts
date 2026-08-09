@@ -4,3 +4,9 @@ export type Articale = {
   title: string;
   body: string;
 };
+
+export type JWTPayload = {
+  id: number;
+  isAdmin: boolean;
+  username: string;
+};

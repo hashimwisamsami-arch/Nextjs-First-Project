@@ -3,7 +3,8 @@ import { loginSchema } from "@/utils/validationSchemas";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/utils/db";
 import bcrypt from "bcryptjs";
-
+import { JWTPayload } from "@/utils/types";
+import { generateJWT } from "@/utils/generateToken";
 /** 
  method: POST
 route : ~/api/users/login
@@ -34,7 +35,13 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       );
     }
-    const token = null;
+    const jwtPayload: JWTPayload = {
+      id: user.id,
+      isAdmin: user.isAdmin,
+      username: user.username,
+    };
+
+    const token = generateJWT(jwtPayload);
     return NextResponse.json(
       {
         message: "Authenticated",
