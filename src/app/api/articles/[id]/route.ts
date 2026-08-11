@@ -119,6 +119,9 @@ export async function DELETE(request: NextRequest, { params }: Props) {
       where: {
         id: parseInt(id),
       },
+      include: {
+        comments: true,
+      },
     });
     if (!article) {
       return NextResponse.json(
@@ -126,7 +129,12 @@ export async function DELETE(request: NextRequest, { params }: Props) {
         { status: 404 },
       );
     }
+    //delete the article
     await prisma.article.delete({ where: { id: parseInt(id) } });
+    //delete the comments that belog to this article
+    const commentIds: number[] = article?.comments.map((comment) => comment.id);
+    await prisma.comment.deleteMany({ where: { id: { in: commentIds } } });
+
     return NextResponse.json({ message: "article deleted" }, { status: 200 });
   } catch {
     return NextResponse.json(
