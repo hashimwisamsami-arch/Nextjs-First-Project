@@ -52,3 +52,9 @@ export const loginSchema = z.object({
     })
     .min(6, { message: "password should be at least 6 characters long" }),
 });
+
+//Create Comment Schema
+export const createCommentShema = z.object({
+  text: z.string().min(2).max(500),
+  articleId: z.number(),
+});
