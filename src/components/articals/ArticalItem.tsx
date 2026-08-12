@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Articale } from "@/utils/types";
+import { Article } from "@/generated/prisma/client";
 interface ArticalItemProps {
-  arttical: Articale;
+  arttical: Article;
 }
 
 const ArticalItem = ({ arttical }: ArticalItemProps) => {
@@ -45,7 +45,7 @@ const ArticalItem = ({ arttical }: ArticalItemProps) => {
       line-clamp-3
     "
       >
-        {arttical.body}
+        {arttical.description}
       </p>
 
       <Link
