@@ -1,18 +1,34 @@
 import Link from "next/link";
 import styles from "./haeder.module.css";
 import Navbar from "./Navbar";
-
-const Header = () => {
+import { cookies } from "next/headers";
+import { verifyTokenForPage } from "@/utils/verifyToken";
+import LogoutButton from "./LogoutButton";
+const Header = async () => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("jwtToken")?.value || "";
+  const payload = verifyTokenForPage(token);
   return (
     <header className={styles.header}>
       <Navbar />
       <div className={styles.right}>
-        <Link className={styles.btn} href="/login">
-          Login{" "}
-        </Link>
-        <Link className={styles.btn} href="/register">
-          Register{" "}
-        </Link>
+        {payload ? (
+          <>
+            <strong className="text-blue-800 md:text-xl capitalize">
+              {payload?.username}
+            </strong>
+            <LogoutButton />
+          </>
+        ) : (
+          <>
+            <Link className={styles.btn} href="/login">
+              Login{" "}
+            </Link>
+            <Link className={styles.btn} href="/register">
+              Register{" "}
+            </Link>
+          </>
+        )}
       </div>
     </header>
   );
