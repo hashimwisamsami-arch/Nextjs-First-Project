@@ -14,7 +14,7 @@ const AdminDashboardLayout = ({ children }: AdminDashboardLayoutProps) => {
       <div className="overflow_height w-15 lg:w-1/5 bg-purple-600 text-white p-1 lg:p-5">
         <AdminSidebar />
       </div>
-      <div className="overflow_height w-full lg:w-4/5 overflow-y-hidden">
+      <div className="overflow_height w-full lg:w-4/5 overflow-y-auto">
         {children}
       </div>
     </div>
