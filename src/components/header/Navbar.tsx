@@ -5,7 +5,10 @@ import styles from "./haeder.module.css";
 import { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
-const Navbar = () => {
+interface NavbarProps {
+  isAdmin: boolean;
+}
+const Navbar = ({ isAdmin }: NavbarProps) => {
   const [toggle, setToggle] = useState(false);
   return (
     <nav className={styles.navbar}>
@@ -51,13 +54,15 @@ const Navbar = () => {
           >
             Articles{" "}
           </Link>
-          <Link
-            onClick={() => setToggle(false)}
-            className={styles.navLink}
-            href="/admin"
-          >
-            Admin{" "}
-          </Link>
+          {isAdmin === true && (
+            <Link
+              onClick={() => setToggle(false)}
+              className={styles.navLink}
+              href="/admin"
+            >
+              Admin Dashbaord{" "}
+            </Link>
+          )}
         </ul>
       </div>
     </nav>

@@ -1,6 +1,13 @@
 import AddArticleForm from "./AddArticleForm";
-
-const Admin = () => {
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { verifyTokenForPage } from "@/utils/verifyToken";
+const Admin = async () => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("jwtToken")?.value || "";
+  if (!token) redirect("/");
+  const payload = verifyTokenForPage(token);
+  if (payload?.isAdmin === false) redirect("/");
   return (
     <div className="fix_height flex items-center justify-center px-5 lg:px-20">
       <div className="shadow p-4 bg-purple-200 rounded w-full">
