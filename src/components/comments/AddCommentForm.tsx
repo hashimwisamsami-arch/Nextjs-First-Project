@@ -2,14 +2,33 @@
 
 import { useState } from "react";
 import { toast } from "react-toastify";
-
-const AddCommentForm = () => {
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { DOMAIN } from "@/utils/constants";
+interface AddCommentFormProps {
+  articleId: number;
+}
+const AddCommentForm = ({ articleId }: AddCommentFormProps) => {
+  const router = useRouter();
   const [text, setText] = useState("");
 
-  const formCommentHandler = (e: React.FormEvent) => {
+  const formCommentHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     if (text === "") return toast.error("Please Write Something");
-    console.log({ text });
+    try {
+      await axios.post(`${DOMAIN}/api/comments`, { text, articleId });
+      router.refresh();
+      setText("");
+    } catch (error) {
+      console.error(error);
+      if (axios.isAxiosError(error)) {
+        toast.error(error.response?.data?.message ?? "Something went wrong");
+      } else if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("Something went wrong");
+      }
+    }
   };
   return (
     <>
