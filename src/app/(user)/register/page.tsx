@@ -1,14 +1,7 @@
 import { Metadata } from "next";
 import RegisterForm from "./RegisterForm";
-import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
-const Register = async () => {
-  const cookieStore = await cookies();
 
-  const token = cookieStore.get("jwtToken")?.value;
-  if (token) {
-    redirect("/");
-  }
+const Register = async () => {
   return (
     <section className="fix_height container m-auto px-7 flex items-center justify-center">
       <div className="m-auto bg-white rounded-lg p-5 w-full md:w-2/3">
